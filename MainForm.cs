@@ -14,6 +14,11 @@ namespace timetracker
 {
     public partial class MainForm : Form
     {
+        enum Operation
+        { 
+            Add,
+            Delete
+        }
         static string pathToDB = AppDomain.CurrentDomain.BaseDirectory + "\\documents.mdb";
         public string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source = " + pathToDB;
         public MainForm()
@@ -37,6 +42,7 @@ namespace timetracker
                     int id = Convert.ToInt32(DocumentsDataGrid[0, index].Value);
                     DeleteDocument(id);
                     ShowDocuments();
+                    GoToPreviousRow(index, Operation.Delete);
                 }
             }
             else
@@ -89,7 +95,13 @@ namespace timetracker
             AddDocumentForm addForm = new AddDocumentForm { connectionString = this.connectionString};
             addForm.ShowDialog();
             if (addForm.DialogResult == DialogResult.OK)
+            {
+                int index = 0;
+                if (DocumentsDataGrid.CurrentCell != null)
+                    index = DocumentsDataGrid.CurrentCell.RowIndex;
                 ShowDocuments();
+                GoToPreviousRow(index, Operation.Add);
+            }
         }
 
         private void ProlongButton_Click(object sender, EventArgs e)
@@ -133,5 +145,24 @@ namespace timetracker
                     DocumentsDataGrid.Rows[i].DefaultCellStyle.BackColor = Color.Red;
             }
         }
+
+        private void DocumentsDataGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ColourGrid();
+        }
+
+        private void GoToPreviousRow(int index,Operation operation)
+        {
+            if (operation == Operation.Add)
+                DocumentsDataGrid.CurrentCell = DocumentsDataGrid.Rows[index].Cells[1];
+            if (operation == Operation.Delete)
+            {
+                if (index == DocumentsDataGrid.RowCount)
+                    DocumentsDataGrid.CurrentCell = DocumentsDataGrid.Rows[index-1].Cells[1];
+                else
+                    DocumentsDataGrid.CurrentCell = DocumentsDataGrid.Rows[index].Cells[1];
+            }
+        }
+
     }
 }
