@@ -62,24 +62,22 @@ namespace timetracker
 
         private void ShowDocuments()
         {
-            string commandText = "SELECT ID,fullname,birthdate,organization,document,receiptdate,enddate,IIF(DATEDIFF('d',DATE(),enddate)>=0, DATEDIFF('d',DATE(),enddate),0) as days FROM documents ORDER BY receiptdate,fullname";
+            string commandText = "SELECT ID,eventdate,organization,theme,location,participants,IIF(DATEDIFF('d',DATE(),eventdate)>=0, DATEDIFF('d',DATE(),eventdate),0) as days FROM documents ORDER BY eventdate,organization";
             OleDbDataAdapter adapter = new OleDbDataAdapter(commandText, connectionString);
             DataSet dataset = new DataSet();
             adapter.Fill(dataset, "documents");
             DocumentsDataGrid.DataSource = dataset.Tables["documents"].DefaultView;
             DocumentsDataGrid.Columns["ID"].Visible = false;
-            DocumentsDataGrid.Columns["fullname"].Width = 250;
-            DocumentsDataGrid.Columns["fullname"].HeaderText = "ФИО";
-            DocumentsDataGrid.Columns["birthdate"].Width = 90;
-            DocumentsDataGrid.Columns["birthdate"].HeaderText = "Дата рождения";
+            DocumentsDataGrid.Columns["eventdate"].Width = 95;
+            DocumentsDataGrid.Columns["eventdate"].HeaderText = "Дата события";
             DocumentsDataGrid.Columns["organization"].Width = 170;
             DocumentsDataGrid.Columns["organization"].HeaderText = "Организация";
-            DocumentsDataGrid.Columns["document"].Width = 100;
-            DocumentsDataGrid.Columns["document"].HeaderText = "№ документа";
-            DocumentsDataGrid.Columns["receiptdate"].Width = 95;
-            DocumentsDataGrid.Columns["receiptdate"].HeaderText = "Дата поступления";
-            DocumentsDataGrid.Columns["enddate"].Width = 95;
-            DocumentsDataGrid.Columns["enddate"].HeaderText = "Дата завершения";
+            DocumentsDataGrid.Columns["theme"].Width = 100;
+            DocumentsDataGrid.Columns["theme"].HeaderText = "Тема";
+            DocumentsDataGrid.Columns["location"].Width = 120;
+            DocumentsDataGrid.Columns["location"].HeaderText = "Место проведения";
+            DocumentsDataGrid.Columns["participants"].Width = 250;
+            DocumentsDataGrid.Columns["participants"].HeaderText = "Участники";
             DocumentsDataGrid.Columns["days"].Width = 70;
             DocumentsDataGrid.Columns["days"].HeaderText = "Дней осталось";
             ColourGrid();
@@ -110,24 +108,24 @@ namespace timetracker
             {
                 int index = DocumentsDataGrid.CurrentCell.RowIndex;
                 int id = Convert.ToInt32(DocumentsDataGrid[0,index].Value);
-                DateTime endDate = Convert.ToDateTime(DocumentsDataGrid[6,index].Value);
+                DateTime eventDate = Convert.ToDateTime(DocumentsDataGrid[1,index].Value);
                 ProlongForm prolongForm = new ProlongForm();
-                prolongForm.EndDateLabel.Text = endDate.ToShortDateString();
+                prolongForm.EventDateLabel.Text = eventDate.ToShortDateString();
                 prolongForm.ShowDialog();
                 if (prolongForm.DialogResult == DialogResult.OK)
                 {
-                    endDate = prolongForm.NewEndDatePicker.Value.Date;
-                    ProlongDocument(id, endDate);
+                    eventDate = prolongForm.NewEventDatePicker.Value.Date;
+                    ProlongDocument(id, eventDate);
                     ShowDocuments();
                 }
             }
             else
-                MessageBox.Show("Не выбран документ для продления!", "Ошибка!", MessageBoxButtons.OK);
+                MessageBox.Show("Не выбрано событие для продления!", "Ошибка!", MessageBoxButtons.OK);
         }
 
-        private void ProlongDocument(int documentId, DateTime newDate)
+        private void ProlongDocument(int eventId, DateTime newDate)
         {
-            string commandText = "UPDATE documents SET enddate='" + Convert.ToString(newDate) + "' WHERE ID=" + Convert.ToString(documentId);
+            string commandText = "UPDATE documents SET eventdate='" + Convert.ToString(newDate) + "' WHERE ID=" + Convert.ToString(eventId);
             OleDbConnection connection = new OleDbConnection(connectionString);
             connection.Open();
             OleDbCommand command = connection.CreateCommand();
@@ -140,7 +138,7 @@ namespace timetracker
         { 
             for (int i=0;i<DocumentsDataGrid.RowCount;i++)
             {
-                int days = Convert.ToInt32(DocumentsDataGrid[7, i].Value);
+                int days = Convert.ToInt32(DocumentsDataGrid[6, i].Value);
                 if (days ==0)
                     DocumentsDataGrid.Rows[i].DefaultCellStyle.BackColor = Color.Red;
             }
@@ -163,6 +161,5 @@ namespace timetracker
                     DocumentsDataGrid.CurrentCell = DocumentsDataGrid.Rows[index].Cells[1];
             }
         }
-
     }
 }

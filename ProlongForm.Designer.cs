@@ -29,68 +29,65 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProlongForm));
-            this.NewEndDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.NewEventDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.EndDateLabel = new System.Windows.Forms.Label();
+            this.EventDateLabel = new System.Windows.Forms.Label();
             this.ProlongButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // NewEndDatePicker
+            // NewEventDatePicker
             // 
-            this.NewEndDatePicker.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NewEndDatePicker.Location = new System.Drawing.Point(252, 60);
-            this.NewEndDatePicker.Margin = new System.Windows.Forms.Padding(2);
-            this.NewEndDatePicker.Name = "NewEndDatePicker";
-            this.NewEndDatePicker.Size = new System.Drawing.Size(151, 26);
-            this.NewEndDatePicker.TabIndex = 18;
+            this.NewEventDatePicker.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NewEventDatePicker.Location = new System.Drawing.Point(336, 74);
+            this.NewEventDatePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NewEventDatePicker.Name = "NewEventDatePicker";
+            this.NewEventDatePicker.Size = new System.Drawing.Size(200, 30);
+            this.NewEventDatePicker.TabIndex = 18;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(23, 66);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(31, 81);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(213, 19);
+            this.label3.Size = new System.Drawing.Size(258, 23);
             this.label3.TabIndex = 17;
-            this.label3.Text = "Продлить документ до даты";
+            this.label3.Text = "Перенести событие на дату";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(23, 19);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(31, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(207, 19);
+            this.label1.Size = new System.Drawing.Size(229, 23);
             this.label1.TabIndex = 16;
-            this.label1.Text = "Текущая дата завершения: ";
+            this.label1.Text = "Текущая дата события: ";
             // 
-            // EndDateLabel
+            // EventDateLabel
             // 
-            this.EndDateLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EndDateLabel.ForeColor = System.Drawing.Color.Maroon;
-            this.EndDateLabel.Location = new System.Drawing.Point(248, 19);
-            this.EndDateLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.EndDateLabel.Name = "EndDateLabel";
-            this.EndDateLabel.Size = new System.Drawing.Size(155, 19);
-            this.EndDateLabel.TabIndex = 19;
-            this.EndDateLabel.Text = "01.01.2020";
-            this.EndDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.EventDateLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.EventDateLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.EventDateLabel.Location = new System.Drawing.Point(331, 23);
+            this.EventDateLabel.Name = "EventDateLabel";
+            this.EventDateLabel.Size = new System.Drawing.Size(207, 23);
+            this.EventDateLabel.TabIndex = 19;
+            this.EventDateLabel.Text = "01.01.2020";
+            this.EventDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ProlongButton
             // 
             this.ProlongButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProlongButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ProlongButton.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ProlongButton.Location = new System.Drawing.Point(27, 106);
-            this.ProlongButton.Margin = new System.Windows.Forms.Padding(2);
+            this.ProlongButton.Location = new System.Drawing.Point(36, 130);
+            this.ProlongButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ProlongButton.Name = "ProlongButton";
-            this.ProlongButton.Size = new System.Drawing.Size(158, 36);
+            this.ProlongButton.Size = new System.Drawing.Size(211, 44);
             this.ProlongButton.TabIndex = 21;
             this.ProlongButton.Text = "Продлить";
             this.ProlongButton.UseVisualStyleBackColor = true;
@@ -101,10 +98,10 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CancelButton.ForeColor = System.Drawing.Color.SteelBlue;
-            this.CancelButton.Location = new System.Drawing.Point(245, 106);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(2);
+            this.CancelButton.Location = new System.Drawing.Point(327, 130);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(158, 36);
+            this.CancelButton.Size = new System.Drawing.Size(211, 44);
             this.CancelButton.TabIndex = 20;
             this.CancelButton.Text = "Отмена";
             this.CancelButton.UseVisualStyleBackColor = true;
@@ -112,22 +109,23 @@
             // 
             // ProlongForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(423, 157);
+            this.ClientSize = new System.Drawing.Size(564, 193);
             this.Controls.Add(this.ProlongButton);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.EndDateLabel);
-            this.Controls.Add(this.NewEndDatePicker);
+            this.Controls.Add(this.EventDateLabel);
+            this.Controls.Add(this.NewEventDatePicker);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProlongForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Продление даты завершения";
+            this.Text = "Продление даты события";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,10 +133,10 @@
 
         #endregion
 
-        public System.Windows.Forms.DateTimePicker NewEndDatePicker;
+        public System.Windows.Forms.DateTimePicker NewEventDatePicker;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Label EndDateLabel;
+        public System.Windows.Forms.Label EventDateLabel;
         private System.Windows.Forms.Button ProlongButton;
         private System.Windows.Forms.Button CancelButton;
     }

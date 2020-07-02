@@ -26,18 +26,16 @@ namespace timetracker
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (FullnameTextBox.Text == "")
-                MessageBox.Show("Не заданы ФИО!", "Ошибка!", MessageBoxButtons.OK);
+            if (ThemeTextBox.Text == "")
+                MessageBox.Show("Не задана тема!", "Ошибка!", MessageBoxButtons.OK);
             else if (OrganizationTextBox.Text == "")
-                MessageBox.Show("Не задано название органа", "Ошибка!", MessageBoxButtons.OK);
+                MessageBox.Show("Не задана организация!", "Ошибка!", MessageBoxButtons.OK);
             else
             {
-                DateTime startDate = ReceiptDatePicker.Value;
-                DateTime endDate = EndDatePicker.Value;
-                int days = (endDate - startDate).Days;
+                DateTime eventDate = EventDatePicker.Value;
+                int days = (eventDate - DateTime.Today).Days;
                 if (days < 0)
-                    MessageBox.Show("Дата завершения не может быть ранее Даты поступления!", "Ошибка!", MessageBoxButtons.OK);
-                else
+                    MessageBox.Show("Дата события не может быть ранее сегодняшней даты!", "Ошибка!", MessageBoxButtons.OK);                else
                 {
                     AddDocument();
                     this.DialogResult = DialogResult.OK;
@@ -45,42 +43,22 @@ namespace timetracker
             }
         }
 
-        private void AddDocumentForm_Load(object sender, EventArgs e)
-        {
-            BirthDatePicker.Format = DateTimePickerFormat.Custom;
-            BirthDatePicker.CustomFormat = " ";
-        }
-
         private void AddDocument()
         {
             string commandText;
-            string fullname = FullnameTextBox.Text;
             string organization = OrganizationTextBox.Text;
-            string document = DocumentTextBox.Text;
-            string startDate = Convert.ToString(ReceiptDatePicker.Value.Date);
-            string endDate = Convert.ToString(EndDatePicker.Value.Date);
-            if (BirthDatePicker.Format == DateTimePickerFormat.Custom)
-            {
-                commandText = "INSERT INTO documents (fullname,organization,document,receiptdate,enddate) VALUES ('";
-                commandText += fullname+"','"+organization+"','"+document+"','"+startDate+"','"+endDate+"')";
-            }
-            else
-            {
-                string birthDate = Convert.ToString(BirthDatePicker.Value.Date);
-                commandText = "INSERT INTO documents (fullname,birthdate,organization,document,receiptdate,enddate) VALUES ('";
-                commandText += fullname + "','" +birthDate + "','" + organization + "','" +document+"','"+ startDate + "','" + endDate + "')";
-            }
+            string theme = ThemeTextBox.Text;
+            string eventDate = Convert.ToString(EventDatePicker.Value.Date);
+            string location = LocationTextBox.Text;
+            string participants = ParticipantsTextBox.Text;
+            commandText = "INSERT INTO documents (eventdate,organization,theme,location,participants) VALUES ('";
+            commandText += eventDate + "','" + organization + "','" + theme + "','" + location + "','" + participants + "')";
             OleDbConnection connection = new OleDbConnection(connectionString);
             connection.Open();
             OleDbCommand command = connection.CreateCommand();
             command.CommandText = commandText;
             command.ExecuteNonQuery();
             connection.Close();
-        }
-
-        private void BirthDatePicker_ValueChanged(object sender, EventArgs e)
-        {
-            BirthDatePicker.Format = DateTimePickerFormat.Long;
         }
     }
 }

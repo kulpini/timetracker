@@ -24,8 +24,8 @@ namespace timetracker
 
         private void ProlongButton_Click(object sender, EventArgs e)
         {
-            DateTime startDate = Convert.ToDateTime(EndDateLabel.Text);
-            DateTime endDate = NewEndDatePicker.Value;
+            DateTime startDate = Convert.ToDateTime(EventDateLabel.Text);
+            DateTime endDate = NewEventDatePicker.Value;
             if (endDate < startDate)
                 MessageBox.Show("Новая дата завершения документа не может быть ранее предыдущей!", "Ошибка!", MessageBoxButtons.OK);
             else
